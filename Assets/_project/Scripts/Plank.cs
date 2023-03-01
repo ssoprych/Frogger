@@ -5,6 +5,7 @@ using UnityEngine;
 public class Plank : MonoBehaviour
 {
     public bool isRight;
+
     void Update()
     {
         if (isRight)
