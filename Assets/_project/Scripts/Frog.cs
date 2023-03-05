@@ -89,7 +89,22 @@ public class Frog : MonoBehaviour
             }
         }
 
-        if (GameManager.Instance.Health == 0)
+        if (GameManager.Instance.OutOfScreen)
+        {
+            Instantiate(DeathEffect, transform.position, transform.rotation);
+            GameManager.Instance.Health--;
+            transform.position = new Vector2(FrogStartingPoint.position.x, FrogStartingPoint.position.y);
+            GameManager.Instance.OutOfScreen = false;
+        }
+
+        if (GameManager.Instance.touchedHouse)
+        {
+            transform.position = new Vector2(FrogStartingPoint.position.x, FrogStartingPoint.position.y);
+            GameManager.Instance.Score++;
+            GameManager.Instance.touchedHouse = false;
+        }
+
+        if (GameManager.Instance.Health == 0 || GameManager.Instance.Score == 3)
         {
             Destroy(gameObject);
         }
