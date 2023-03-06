@@ -788,7 +788,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7938617455223031881, guid: a6fddceee4a82f84fa7ac9e76f00e329, type: 3}
       propertyPath: m_Name
-      value: LongestPlank
+      value: LongestPlankUp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7938617455223031883, guid: a6fddceee4a82f84fa7ac9e76f00e329, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6fddceee4a82f84fa7ac9e76f00e329, type: 3}

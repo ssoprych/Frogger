@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class House : MonoBehaviour
 {
+    public bool Visited;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Frog"))
         {
-            GameManager.Instance.touchedHouse = true;
+            if (Visited == false)
+            {
+                GameManager.Instance.touchedHouse = true;
+                Visited = true;
+            }
         }
     }
 }
