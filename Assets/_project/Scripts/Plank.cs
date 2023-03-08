@@ -16,5 +16,6 @@ public class Plank : MonoBehaviour
         {
             transform.position += Vector3.left * (Random.Range(3, 10) * Time.deltaTime);
         }
+
     }
 }

@@ -8,6 +8,7 @@ public class Frog : MonoBehaviour
     private Animator _anim;
     public float PixelsHorizontal;
     public float PixelsVertical;
+    public GameObject Plank;
     public GameObject DeathEffect;
     public Transform FrogStartingPoint;
     public bool HealthReduced = false;
@@ -15,6 +16,7 @@ public class Frog : MonoBehaviour
     private void Awake()
     {
         _anim = GetComponent<Animator>();
+        
     }
 
     void Move()
@@ -43,6 +45,15 @@ public class Frog : MonoBehaviour
             _frog.position += Vector2.down * PixelsVertical;
             _anim.SetBool("IsDown", true);
         }
+        if (GameManager.Instance.onPlank)
+        {
+            _frog.transform.SetParent(Plank.transform);
+        }
+        else
+        {
+            transform.SetParent(null);
+        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -108,7 +119,7 @@ public class Frog : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
+
     }
 
 }
