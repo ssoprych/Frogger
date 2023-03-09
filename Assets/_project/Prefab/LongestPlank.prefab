@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7938617455223031882}
   - component: {fileID: 7938617455223031885}
   - component: {fileID: 7938617455223031884}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LongestPlank
   m_TagString: Plank
   m_Icon: {fileID: 0}

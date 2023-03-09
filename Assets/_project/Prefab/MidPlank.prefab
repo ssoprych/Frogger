@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8380434147678964969}
   - component: {fileID: 8380434147678964970}
   - component: {fileID: 8380434147678964971}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MidPlank
   m_TagString: Plank
   m_Icon: {fileID: 0}
