@@ -18,8 +18,6 @@ public class Frog : MonoBehaviour
         _frog = GetComponent<Rigidbody2D>();
     }
 
-   
-
     void Move()
     {
         //set all animations bools to false
@@ -27,13 +25,13 @@ public class Frog : MonoBehaviour
         _anim.SetBool("IsUp", false);
         _anim.SetBool("IsLeft", false);
         _anim.SetBool("IsRight", false);
+
         //set parent to null, move direction and play move animation
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             _frog.transform.SetParent(null);
-            _frog.position += Vector2.up * PixelsVertical;
+            _frog.MovePosition(forg * forg2);
             _anim.SetBool("IsUp", true);
-
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
@@ -53,16 +51,17 @@ public class Frog : MonoBehaviour
             _frog.position += Vector2.down * PixelsVertical;
             _anim.SetBool("IsDown", true);
         }
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+
         HealthReduced = false;
         if (collision.gameObject.CompareTag("Plank"))
         {
             GameManager.Instance.onPlank = true;
+            _frog.transform.SetParent(collision.gameObject.transform);
         }
         if (collision.gameObject.CompareTag("Water"))
         {
@@ -91,7 +90,6 @@ public class Frog : MonoBehaviour
     private void Update()
     {
         Move();
-        
         //dying to water 
         if (GameManager.Instance.onPlank == false && GameManager.Instance.onWater == true)
         {
