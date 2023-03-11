@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -11,6 +12,7 @@ public class GameManager : MonoBehaviour
     public bool OutOfScreen;
     public int Score;
     public bool touchedHouse;
+    public TMP_Text ScoreText;
     private void Awake()
     {
         // If there is an instance, and it's not me, delete myself.
@@ -37,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        ScoreText.text = "Score: " + Score;
         if (Score == 3)
         {
             Time.timeScale = 0;

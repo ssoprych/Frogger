@@ -29,24 +29,28 @@ public class Frog : MonoBehaviour
         //set parent to null, move direction and play move animation
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
+            transform.SetParent(null);
             _frog.transform.SetParent(null);
-            _frog.MovePosition(forg * forg2);
+            _frog.position += Vector2.up * PixelsVertical;
             _anim.SetBool("IsUp", true);
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
+            transform.SetParent(null);
             _frog.transform.SetParent(null);
             _frog.position += Vector2.left * PixelsHorizontal;
             _anim.SetBool("IsLeft", true);
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
+            transform.SetParent(null);
             _frog.transform.SetParent(null);
             _frog.position += Vector2.right * PixelsHorizontal;
             _anim.SetBool("IsRight", true);
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
+            transform.SetParent(null);
             _frog.transform.SetParent(null);
             _frog.position += Vector2.down * PixelsVertical;
             _anim.SetBool("IsDown", true);
@@ -61,7 +65,7 @@ public class Frog : MonoBehaviour
         if (collision.gameObject.CompareTag("Plank"))
         {
             GameManager.Instance.onPlank = true;
-            _frog.transform.SetParent(collision.gameObject.transform);
+            transform.SetParent(collision.transform);
         }
         if (collision.gameObject.CompareTag("Water"))
         {
