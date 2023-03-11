@@ -26,34 +26,30 @@ public class Frog : MonoBehaviour
         _anim.SetBool("IsLeft", false);
         _anim.SetBool("IsRight", false);
 
-        //set parent to null, move direction and play move animation
+        //move in certain direction, play move animation and disable Plank component and isRight bool so if frog stands on left plank it will move left instead of right
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            transform.SetParent(null);
-            _frog.transform.SetParent(null);
             _frog.position += Vector2.up * PixelsVertical;
             _anim.SetBool("IsUp", true);
+            GetComponent<Plank>().enabled = false;
+            GetComponent<Plank>().isRight = false;
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            transform.SetParent(null);
-            _frog.transform.SetParent(null);
             _frog.position += Vector2.left * PixelsHorizontal;
             _anim.SetBool("IsLeft", true);
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            transform.SetParent(null);
-            _frog.transform.SetParent(null);
             _frog.position += Vector2.right * PixelsHorizontal;
             _anim.SetBool("IsRight", true);
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            transform.SetParent(null);
-            _frog.transform.SetParent(null);
             _frog.position += Vector2.down * PixelsVertical;
             _anim.SetBool("IsDown", true);
+            GetComponent<Plank>().enabled = false;
+            GetComponent<Plank>().isRight = false;
         }
 
     }
@@ -65,7 +61,15 @@ public class Frog : MonoBehaviour
         if (collision.gameObject.CompareTag("Plank"))
         {
             GameManager.Instance.onPlank = true;
-            transform.SetParent(collision.transform);
+            //equals the speed of frog and the plank
+            GetComponent<Plank>().Speed = collision.GetComponent<Plank>().Speed;
+            //Actives the plank script attached to frog gameObject so it moves with plank
+            GetComponent<Plank>().enabled = true;
+            //If the plank is moving to right frog will also move that way
+            if (collision.GetComponent<Plank>().isRight)
+            {
+                GetComponent<Plank>().isRight = true;
+            }
         }
         if (collision.gameObject.CompareTag("Water"))
         {
@@ -84,6 +88,7 @@ public class Frog : MonoBehaviour
         if (collision.gameObject.CompareTag("Plank"))
         {
             GameManager.Instance.onPlank = false;
+            GetComponent<Plank>().enabled = false;
         }
         if (collision.gameObject.CompareTag("Water"))
         {
@@ -100,6 +105,7 @@ public class Frog : MonoBehaviour
             if (HealthReduced == false)
             {
                 Instantiate(DeathEffect, transform.position, transform.rotation);
+                transform.SetParent(null);
                 GameManager.Instance.Health--;
                 transform.position = new Vector2(FrogStartingPoint.position.x, FrogStartingPoint.position.y);
                 HealthReduced = true;
