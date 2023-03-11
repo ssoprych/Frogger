@@ -9,7 +9,15 @@ public class Car : MonoBehaviour
 
     private void Start()
     {
-        Speed = Random.Range(10, 13);
+        Speed = Random.Range(6, 8);
+        if (GameManager.Instance.Score == 1)
+        {
+            Speed = Random.Range(9, 11);
+        }
+        if (GameManager.Instance.Score == 2)
+        {
+            Speed = Random.Range(12, 13);
+        }
     }
     void Update()
     {
