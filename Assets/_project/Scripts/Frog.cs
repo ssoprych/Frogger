@@ -33,6 +33,7 @@ public class Frog : MonoBehaviour
             _anim.SetBool("IsUp", true);
             GetComponent<Plank>().enabled = false;
             GetComponent<Plank>().isRight = false;
+            GameManager.Instance.Score += 50;
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
@@ -125,7 +126,8 @@ public class Frog : MonoBehaviour
         if (GameManager.Instance.touchedHouse)
         {
             transform.position = new Vector2(FrogStartingPoint.position.x, FrogStartingPoint.position.y);
-            GameManager.Instance.Score++;
+            GameManager.Instance.HousesVisited++;
+            GameManager.Instance.Score += 200;
             GameManager.Instance.touchedHouse = false;
         }
 

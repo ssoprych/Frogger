@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public int Health;
     public bool OutOfScreen;
     public int Score;
+    public int HousesVisited;
     public bool touchedHouse;
     public TMP_Text ScoreText;
     private void Awake()
@@ -34,13 +35,14 @@ public class GameManager : MonoBehaviour
         touchedHouse = false;
         OutOfScreen = false;
         Health = 3;
+        HousesVisited = 0;
         Score = 0;
     }
 
     private void Update()
     {
         ScoreText.text = "Score: " + Score;
-        if (Score == 3)
+        if (HousesVisited == 3)
         {
             Time.timeScale = 0;
         }
