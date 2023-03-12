@@ -11,6 +11,8 @@ public class Frog : MonoBehaviour
     public GameObject DeathEffect;
     public Transform FrogStartingPoint;
     public bool HealthReduced = false;
+    public AudioClip Jump;
+    public AudioClip DeathSound;
 
     private void Awake()
     {
@@ -34,16 +36,19 @@ public class Frog : MonoBehaviour
             GetComponent<Plank>().enabled = false;
             GetComponent<Plank>().isRight = false;
             GameManager.Instance.Score += 50;
+            AudioManager.Instance.PlaySound(Jump);
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             _frog.position += Vector2.left * PixelsHorizontal;
             _anim.SetBool("IsLeft", true);
+            AudioManager.Instance.PlaySound(Jump);
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             _frog.position += Vector2.right * PixelsHorizontal;
             _anim.SetBool("IsRight", true);
+            AudioManager.Instance.PlaySound(Jump);
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
@@ -51,6 +56,7 @@ public class Frog : MonoBehaviour
             _anim.SetBool("IsDown", true);
             GetComponent<Plank>().enabled = false;
             GetComponent<Plank>().isRight = false;
+            AudioManager.Instance.PlaySound(Jump);
         }
 
     }
@@ -81,6 +87,7 @@ public class Frog : MonoBehaviour
             Instantiate(DeathEffect, transform.position, transform.rotation);
             GameManager.Instance.Health--;
             transform.position = new Vector2(FrogStartingPoint.position.x, FrogStartingPoint.position.y);
+            AudioManager.Instance.PlaySound(DeathSound);
         }
     }
 
@@ -110,6 +117,7 @@ public class Frog : MonoBehaviour
                 GameManager.Instance.Health--;
                 transform.position = new Vector2(FrogStartingPoint.position.x, FrogStartingPoint.position.y);
                 HealthReduced = true;
+                AudioManager.Instance.PlaySound(DeathSound);
             }
         }
 

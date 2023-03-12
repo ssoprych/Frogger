@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public int HousesVisited;
     public bool touchedHouse;
     public TMP_Text ScoreText;
+    public AudioClip BackgroundMusic;
+    public AudioClip LevelComplete;
     private void Awake()
     {
         // If there is an instance, and it's not me, delete myself.
@@ -37,6 +39,7 @@ public class GameManager : MonoBehaviour
         Health = 3;
         HousesVisited = 0;
         Score = 0;
+        AudioManager.Instance.PlayMusic(BackgroundMusic);
     }
 
     private void Update()
@@ -44,11 +47,14 @@ public class GameManager : MonoBehaviour
         ScoreText.text = "Score: " + Score;
         if (HousesVisited == 3)
         {
+            AudioManager.Instance.PlaySound(LevelComplete);
+            AudioManager.Instance.StopMusic(BackgroundMusic);
             Time.timeScale = 0;
         }
 
         if (Health == 0)
         {
+            AudioManager.Instance.StopMusic(BackgroundMusic);
             Time.timeScale = 0;
         }
     }
