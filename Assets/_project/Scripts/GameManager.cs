@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
         ScoreText.text = "Score: " + Score;
         if (HousesVisited == 3)
         {
-            AudioManager.Instance.PlaySound(LevelComplete);
+            AudioManager.Instance.PlaySound2(LevelComplete);
             AudioManager.Instance.StopMusic(BackgroundMusic);
             Time.timeScale = 0;
         }

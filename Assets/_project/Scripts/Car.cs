@@ -10,11 +10,11 @@ public class Car : MonoBehaviour
     private void Start()
     {
         Speed = Random.Range(6, 8);
-        if (GameManager.Instance.Score == 1)
+        if (GameManager.Instance.HousesVisited == 1)
         {
             Speed = Random.Range(9, 11);
         }
-        if (GameManager.Instance.Score == 2)
+        if (GameManager.Instance.HousesVisited == 2)
         {
             Speed = Random.Range(12, 13);
         }

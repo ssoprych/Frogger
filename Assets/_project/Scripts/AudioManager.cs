@@ -6,6 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
     public AudioSource audioSource;
+    public AudioSource audioSource2;
     public AudioSource musicSource;
 
     private void Awake()
@@ -24,6 +25,12 @@ public class AudioManager : MonoBehaviour
     {
         audioSource.clip = clip;
         audioSource.Play();
+    }
+
+    public void PlaySound2(AudioClip clip)
+    {
+        audioSource2.clip = clip;
+        audioSource2.Play();
     }
 
     public void PlayMusic(AudioClip clip)

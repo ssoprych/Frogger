@@ -9,11 +9,11 @@ public class Plank : MonoBehaviour
     private void Start()
     {
         Speed = Random.Range(3,6);
-        if (GameManager.Instance.Score == 1)
+        if (GameManager.Instance.HousesVisited == 1)
         {
             Speed = Random.Range(4, 8);
         }
-        if( GameManager.Instance.Score == 2)
+        if( GameManager.Instance.HousesVisited == 2)
         {
             Speed = Random.Range(5, 10);
         }
